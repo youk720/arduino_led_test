@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+  </head>
+  <body>
+    <audio id="melo" src="https://youk720.github.io/melo_work/melo/夏色の時間_1.mp3" preload="auto">
+      <source type="audio/mp3">
+      </audio>
+    <audio id="door" src="https://youk720.github.io/melo_work/melo/tuda/4.mp3" preload="auto">
+      <source type="audio/mp3">
+    </audio>
+    <div>
+      <div class="sw" style="background:#F2D88C;width:200px;height:300px">
+
+      <p style="background:#ffffff;font-size:30px;position:absolute; top:75px;left:90px;">発車ベル</p>
+
+      <button id="on" style='font-size:50px;width:140px;height:100px;position:absolute; top:130px;left:79px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
+      <br>
+      <button id="off" style='font-size:50px;width:140px;height:100px;position:absolute; top:230px;left:79px' class="btn btn-success btn-lg"><strong>OFF</strong></button>
+      </div>
+
+      <form id="sw">
+        <!-- 以下,view_index_2.js有効にして実行してください -->
+        <!-- <button id="on" style='font-size:38px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
+        <br>
+        <button id="off" style='font-size:30px;' class="btn btn-success btn-lg"><strong>OFF</strong></button> -->
+
+      <!-- 以下,view_index.js有効にして実行してください -->
+        <input id="led_1" type="checkbox" name="led_select" value="1">LED_1
+        <input id="led_2" type="checkbox" name="led_select" value="2">LED_2
+        <input id="led_3" type="checkbox" name="led_select" value="3">LED_FULL
+        <br>
+        <input type="submit" id="send" class="btn btn-danger btn-lg  text-center btn-lg" value="発 信">
+    </form>
+      <br>
+      <p id="sw_now"></p>
+    </div>
+
+    <!-- https://digital-marketing.jp/seo/spam-hidden-text/ -->
+    <!-- <script type="text/javascript" src="javascripts/view_index.js"></script> -->
+    <script type="text/javascript" src="javascripts/view.js"></script>
+
+  </body>
+</html>
