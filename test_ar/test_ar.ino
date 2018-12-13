@@ -4,7 +4,7 @@
 String serial_result = "";
 String old_result = "2";
 String sw_status = "";
- 
+
 void setup() {
   pinMode(led_1, OUTPUT);
   pinMode(led_2, OUTPUT);
@@ -23,7 +23,7 @@ void loop(){
     sw_status = "{\"sw\":\"True\"}";
     Serial.println(sw_status);
   }
-  
+
   int serial_x = Serial.read();
   serial_result = String(serial_x);
 //  Serial.println(serial_result);
@@ -48,5 +48,5 @@ void loop(){
     }
     old_result = serial_result;
   }
-  
+  // fdsfgreaferyjrgdfsa
 }
