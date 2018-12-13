@@ -48,5 +48,5 @@ void loop(){
     }
     old_result = serial_result;
   }
-  // fdsfgreaferyjrgdfsa
+  
 }
