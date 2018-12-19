@@ -27,9 +27,7 @@ void loop(){
   int serial_x = Serial.read();
   serial_result = String(serial_x);
 //  Serial.println(serial_result);
-  if(serial_result == old_result){
-    old_result = serial_result;
-  }else{
+  if(serial_result != old_result){
     if(serial_result == "3"){
       digitalWrite(led_1, HIGH);
       digitalWrite(led_2, HIGH);
@@ -47,6 +45,9 @@ void loop(){
       digitalWrite(led_2, LOW);
     }
     old_result = serial_result;
+  }else if(serial_result == ""){
+    return;
+  }else{
+     old_result = serial_result;
   }
-  
 }
