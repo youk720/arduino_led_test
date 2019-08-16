@@ -74,6 +74,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+// bootstrapの読み込み
+// app.use('/stylesheets', express.static('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'));
+// app.use('/javascripts', express.static('https://code.jquery.com/jquery-3.3.1.min.js'));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
