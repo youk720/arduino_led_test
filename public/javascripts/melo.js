@@ -111,7 +111,7 @@ $(melo).on("ended", function(){
     melo_noiz.currentTime = 0;
     melo_mode = 0;
     melo_noiz.loop = false;
-    
+
     // 別モード用
   if ($('[name=sw_mode][value=2]').prop('checked')) {
     setTimeout(off_1);
