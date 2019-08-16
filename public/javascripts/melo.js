@@ -65,11 +65,12 @@ function on(){
     
     melo.play();
     melo.loop = true;
+    melo_mode = 1;
     console.log("melody's loop is " + melo.loop);
     if($("#noiz_check").prop('checked')){
       melo_noiz.play();
       melo_noiz.loop = true;
-      melo_mode = 1;
+      
     }
   })
 }
@@ -78,17 +79,17 @@ function on(){
 function off(){
     //以下は通常モードの処理
     if($('[name=sw_mode][value=0]').prop('checked')){
-    melo.pause();
-    melo.currentTime = 0;
-    melo.loop = false;
-    melo_noiz.pause();
-    melo_noiz.currentTime = 0;
-    melo_mode = 0;
+      melo.pause();
+      melo.currentTime = 0;
+      melo.loop = false;
+      melo_noiz.pause();
+      melo_noiz.currentTime = 0;
+      melo_mode = 0;
 
-    melo_noiz.loop = false;
-    setTimeout(off_1, 1780);
+      melo_noiz.loop = false;
+      setTimeout(off_1, 1780);
 
-    console.log("melody's loop is " + melo.loop);
+      console.log("melody's loop is " + melo.loop);
     }
     //以下は立川モードの処理
     else if($('[name=sw_mode][value=1]').prop('checked')){
@@ -128,15 +129,15 @@ $(melo).on("ended", function(){
 });
 
 //戸閉放送流れてる時にonを押したら止める処理の関数定義
-function on_door(){
-    if($('[name=on_mode][value=0]').prop('checked')){
-      return;
-    };
-    if($('[name=on_mode][value=1]').prop('checked')){
-      // 禁煙放送強制停止
-      stop_atos();
-    }
-}
+// function on_door(){
+//     if($('[name=on_mode][value=0]').prop('checked')){
+//       return;
+//     };
+//     if($('[name=on_mode][value=1]').prop('checked')){
+//       // 禁煙放送強制停止
+//       stop_atos();
+//     }
+// }
 
 // メロディの再生時間と、合計時間表示
 function time(){
@@ -187,7 +188,6 @@ $('body').on("keydown", function(e) {
 if(e.keyCode === 69) {
   //69キー=Eキー off関数召喚
   on();
-  on_door()
   }
 });
 $('#off').on('click', function (){
@@ -244,3 +244,29 @@ $(volume_smoking).change(function(){
     atos_volume = volumeValue;
   }
 });
+
+var bell_status = 1;
+var door_status = 1;
+
+
+// arduino側からのスイッチ操作
+setInterval(function(){
+  // $('#sw_now').change(function() {
+    if (bell_status === 1 && $('#sw_now').text() === "True"){
+        on();
+        // console.log("ON");
+        $("#on").removeClass().addClass("btn btn-danger btn-lg  text-center");
+        $("#off").removeClass().addClass("btn btn-default btn-lg  text-center");
+        bell_status = 0;
+        door_status = 1;
+  
+    };
+    if(door_status === 1 && $('#sw_now').text() === "False"){
+        $("#on").removeClass().addClass("btn btn-default btn-lg");
+        $("#off").removeClass().addClass("btn btn-success btn-lg");
+        off();
+        // console.log("OFF");
+        bell_status = 1;
+        door_status = 0;
+    };
+  }, 10);

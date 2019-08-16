@@ -57,33 +57,6 @@ $(document).ready(function () {
   }, 10);
 });
 
-var bell_status = 1;
-var door_status = 1;
-// arduino側からのスイッチ操作
-setInterval(function(){
-// $('#sw_now').change(function() {
-  if (bell_status === 1 && $('#sw_now').text() === "True"){
-      on();
-      on_door();
-      // console.log("ON");
-      $("#on").removeClass().addClass("btn btn-danger btn-lg  text-center");
-      $("#off").removeClass().addClass("btn btn-default btn-lg  text-center");
-      bell_status = 0;
-      door_status = 1;
-
-  };
-  if(door_status === 1 && $('#sw_now').text() === "False"){
-      $("#on").removeClass().addClass("btn btn-default btn-lg");
-      $("#off").removeClass().addClass("btn btn-success btn-lg");
-      off();
-      // console.log("OFF");
-      bell_status = 1;
-      door_status = 0;
-  };
-}, 10);
-
-
-
 // 音声定義
 let atos1 = new Audio();
 let atos2 = new Audio();
@@ -227,11 +200,11 @@ function sound_start(){
      if(list_link.length % 2 === 1){
       setTimeout(function(){
         atos_flug = 0;
-      }, atos2.duration);
+      }, atos2.duration*1000);
      }else{
        setTimeout(function(){
         atos_flug = 0;
-       }, atos1.duration);
+       }, atos1.duration*1000);
      }
     //  atos_noiz.loop = false;
      console.log("over");
